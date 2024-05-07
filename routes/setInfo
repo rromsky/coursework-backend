@@ -1,0 +1,14 @@
+const express = require("express");
+const router = express.Router();
+const { setAquariumTemperature } = require("../firebase/firebaseApi");
+
+router.post("/", async (req, res) => {
+  console.log(req.body);
+  const { temperature, id } = req.body;
+  console.log(temperature, id);
+  await setAquariumTemperature({ id, temperature });
+
+  res.send("Temperature updated");
+});
+
+module.exports = router;
